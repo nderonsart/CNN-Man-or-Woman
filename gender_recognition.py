@@ -1,8 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-Script python permettant l'entraînement d'une Intelligence Artificielle 
-permettant de reconnaître le genre de la personne depuis une photo
+Python script to train the AI able to recognize the gender of someone in a picture
 
 @author: Deronsart Nicolas
 """
@@ -17,15 +16,15 @@ from keras.preprocessing import image
 
 def data_preprocessing(directory):
     '''
-        Fonction qui prépare les images en 2 ensembles:
-            - Les images pour entraîner l'IA -> training_set
-            - Celles pour tester son efficacité -> test_set 
+        Function which prepares the images in two parts:
+            - The images to train the AI -> training_set
+            - The one to test its efficiency -> test_set 
             
-        Param :
-            Le nom du fichier dans lequel se trouvent les images
+        Parameters :
+            The name of the file containing the pictures
             
         Return:
-            training_set et test_set
+            training_set and test_set
     '''
     train_datagen = ImageDataGenerator(rescale=1./255, shear_range=0.2, 
                                        zoom_range=0.2, horizontal_flip=True)
@@ -46,10 +45,10 @@ def data_preprocessing(directory):
 
 def build_cnn():
     '''
-        Fonction qui construit l'Intelligence Artificielle 
+        Function to build the CNN
     
         Return :
-            Le CNN (Convolutional Neural Network)
+            The CNN (Convolutional Neural Network)
     '''
     cnn = tf.keras.models.Sequential()
     
@@ -71,12 +70,11 @@ def build_cnn():
 
 def predict_woman_man(file, cnn):
     '''
-        Fonction qui permet de donner la prediction du CNN pour une image 
-        donnée
+        Function to give the prediction of the AI for a picture given
     
         Return :
-            1 si c'est une femme
-            0 si c'est un homme
+            1 for a woman
+            0 for a man
     '''
     test_image = image.load_img(file, target_size=(64, 64))
     test_image = image.img_to_array(test_image)
@@ -110,11 +108,9 @@ if __name__ == "__main__" :
     
     # Test
     test_file = directory + "/single_prediction/man_or_woman_"
-    print("Man : "+str(predict_woman_man(test_file+"1.jpg", cnn)))
-    print("Woman : "+str(predict_woman_man(test_file+"2.jpg", cnn)))
-    print("Man : "+str(predict_woman_man(test_file+"3.jpg", cnn)))
-    print("Woman : "+str(predict_woman_man(test_file+"4.jpg", cnn)))
-    print("Man : "+str(predict_woman_man(test_file+"5.jpg", cnn)))
-    print("Woman : "+str(predict_woman_man(test_file+"6.jpg", cnn)))
+    print("Test Man 1 : "+str(predict_woman_man(test_file+"1.jpg", cnn)))
+    print("Test Woman 1 : "+str(predict_woman_man(test_file+"2.jpg", cnn)))
+    print("Test Man 2 : "+str(predict_woman_man(test_file+"3.jpg", cnn)))
+    print("Test Woman 2 : "+str(predict_woman_man(test_file+"4.jpg", cnn)))
 
 
