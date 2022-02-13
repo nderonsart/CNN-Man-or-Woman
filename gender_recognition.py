@@ -21,7 +21,7 @@ def data_preprocessing(directory):
             - The one to test its efficiency -> test_set 
             
         Parameters :
-            The name of the file containing the pictures
+            The name of the directory containing the pictures
             
         Return:
             training_set and test_set
